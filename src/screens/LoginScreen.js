@@ -6,7 +6,7 @@ import InputFields from '../components/common/InputFields';
 class loginScreen extends Component {
 
 // save value in local storage
- 
+
     constructor(props) {
         super(props);
         AsyncStorage.getItem('emailkey').then((keyValue) => {
@@ -230,7 +230,7 @@ height: 55,
         fontWeight : '600',
     },
     facebookbutton: {
-        backgroundColor: 'blue',
+        backgroundColor: '#4267b2',
         padding: 10,
         height: 50,
         marginLeft : 30,
