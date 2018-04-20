@@ -3,14 +3,18 @@ import {
     View,
     Text,
     StyleSheet,
-    Image
+    Image,
+    TouchableHighlight,
 } from "react-native";
-import {Icon,Button,Container,Header,Content,Left}from 'native-base'
+import {Icon,Button,Container,Header,Content,Left}from 'native-base';
 
 class HomeScreen extends Component{
+    static navigationOptions = {
+        header:null
+    }
     static navigationOptions={
         drawerIcon:(
-            <Image source={require('./assets/DrawerIcons/home.png')}
+            <Image source={require('../images/home.png')}
                    style={{height:24,width:24}}/>
         )
     }
@@ -19,7 +23,10 @@ class HomeScreen extends Component{
             <Container>
                 <Header style={{height:50,backgroundColor:"#fece00"}}>
                     <Left>
-                        <Icon name="ios-menu" onPress={()=>this.props.navigation.navigate('DrawerOpen')}/>
+                        <TouchableHighlight  onPress={()=>this.props.navigation.navigate('DrawerOpen')}  >
+                            <Image source={require('../images/menuicon.png')}
+                                   style={{height:24,width:24}}/>
+                        </TouchableHighlight>
                     </Left>
                 </Header>
                 <Content contentContainerStyle={{
@@ -27,7 +34,7 @@ class HomeScreen extends Component{
                     alignItems:'center',
                     justifyContent:'center'
                 }}>
-                    <Text>Home Screen</Text>
+                    <Text> home screen </Text>
                 </Content>
             </Container>
         )

@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity,NetInfo, TextInput, StyleSheet,ImageBackground ,AsyncStorage,TimePickerAndroid,Image,BackHandler} from 'react-native'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { View, Text, TouchableOpacity, TextInput, StyleSheet,ImageBackground ,AsyncStorage,TimePickerAndroid,Image,BackHandler} from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 import InputFields from '../components/common/InputFields';
 class loginScreen extends Component {
+
 // save value in local storage
 
     constructor(props) {
@@ -53,32 +54,18 @@ class loginScreen extends Component {
     }
     */
     //backButton
-    state = {
-        email: '',
-        password: '',
-        savevalue:'',
-        fetchdata:[],
-    }
-    componentWillMount1() {
-        if(this.state.email!="") {
-            axios.get('http://stackcru.com/loginapi.php?username=' + this.state.email + "&password=" + this.state.password)
-                .then(response => this.setState({fetchdata: response.data}))
-                .catch((error) => {
-                    console.error(error);
-                });
-        }
 
-
-    }
-    renderdata(){
-        return this.state.fetchdata.map(datarecord=> datarecord.status );
-    }
 
 
     static navigationOptions = {
         header:null
     }
-
+    state = {
+        email: '',
+        password: '',
+        savevalue:'',
+        data:[],
+    }
     handleEmail = (text) => {
     this.setState({ email: text })
 }
@@ -86,34 +73,30 @@ handlePassword = (text) =>{
     this.setState({ password: text })
 }
 login = (email, pass) => {
-    this.props.navigation.navigate('Runscreen');
-        /*
+
     if (email == "") {
-        alert(' Email Field can not be empty')
+        alert(' Password Field can not be empty')
     }
     else if( pass== "") {
-        alert('Password  Field can not be empty')
+        alert(' Email Field can not be empty')
     }
     else {
 
-        this.componentWillMount1();
-        this.componentWillMount1();
-
-        if(this.state.fetchdata.status=="true")
+        axios.get('https://stackcru.com/loginapi.php?username='+email+"&password="+pass)
+            .then(response=> this.setState({ data:response.data}));
+        if(this.state.data.state=="true")
         {
-            AsyncStorage.setItem("emailkey",  email);
+            AsyncStorage.setItem("emailkey", email);
             this.setState({"emailkey": email});
-            alert('yes' );
-       //   this.props.navigation.navigate('Runscreen');
+          //  this.props.navigation.navigate('Runscreen');
         }
         else {
-            alert(' Wrong Email or Password ' +this.state.email +' - '+this.state.password);
+            alert(' Wrong Email or Password');
         }
 
 
       //  alert('email: ' + email + ' password: ' + pass+ ' -- '+this.state.savevalue)
     }
-    */
 }
 Signup = (email)=>{
    this.props.navigation.navigate('signup');

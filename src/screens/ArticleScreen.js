@@ -3,22 +3,24 @@ import {
     View,
     Text,
     StyleSheet,
-    Image
+    Image,
+    ScrollView,
+    TouchableHighlight,
 } from "react-native";
 import {Icon,Button,Container,Header,Content,Left}from 'native-base'
-
-class SettingsScreen extends Component{
+import ArticleComponent from '../components/common/ArticleComponent'
+import Articleheader from '../components/common/Articleheader'
+class ArticleScreen extends Component{
     static navigationOptions = {
         header:null
     }
     static navigationOptions={
 
         drawerIcon:(
-            <Image source={require('../images/settings.png')}
+            <Image source={require('../images/home.png')}
                    style={{height:24,width:24}}/>
         )
     }
-
     render() {
         return (
             <Container>
@@ -27,20 +29,26 @@ class SettingsScreen extends Component{
                         <TouchableHighlight  onPress={()=>this.props.navigation.navigate('DrawerOpen')}  >
                             <Image source={require('../images/menuicon.png')}
                                    style={{height:24,width:24}}/>
-                        </TouchableHighlight>    </Left>
+                        </TouchableHighlight>
+                    </Left>
                 </Header>
                 <Content contentContainerStyle={{
                     flex:1,
                     alignItems:'center',
                     justifyContent:'center'
                 }}>
-                    <Text>Settings Screen</Text>
+                    <ScrollView>
+                        <Articleheader/>
+                    <ArticleComponent/>
+                    <ArticleComponent/>
+                    <ArticleComponent/>
+                    <ArticleComponent/>
+                    </ScrollView>
                 </Content>
             </Container>
         )
     }
 }
-
-export default SettingsScreen;
+export default ArticleScreen;
 
 
